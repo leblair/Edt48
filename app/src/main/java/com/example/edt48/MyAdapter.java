@@ -1,6 +1,7 @@
 package com.example.edt48;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //poner imageView de MyAdapter.class interna
         holder.pictitle.setText(pictures.get(position).getText());
         Picasso.get().load(pictures.get(position).getUrl()).fit().centerCrop().into(holder.img);
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,DetailActivity.class);
+                intent.putExtra("text",pictures.get(holder.getAdapterPosition()).getText());
+                intent.putExtra("desc",pictures.get(holder.getAdapterPosition()).getDesc());
+                intent.putExtra("url",pictures.get(holder.getAdapterPosition()).getUrl());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
