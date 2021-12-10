@@ -5,20 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<Picture> pictures;
+    private List<Picture> pictures;
 
-    public MyAdapter(Context context, ArrayList<Picture> pictures) {
+    public MyAdapter(Context context, List<Picture> pictures) {
         this.context = context;
         this.pictures = pictures;
     }
@@ -33,9 +36,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Picasso.get().load(pictures.get(position).getUrl()).fit().centerCrop().into(holder.img);
         //poner imageView de MyAdapter.class interna
         holder.pictitle.setText(pictures.get(position).getText());
+        Picasso.get().load(pictures.get(position).getUrl()).fit().centerCrop().into(holder.img);
     }
 
     @Override
@@ -47,12 +50,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         private ImageView img;
         private TextView pictitle;
+        private ConstraintLayout constraintLayout;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.img);
             pictitle = itemView.findViewById(R.id.pictitle);
+            constraintLayout = itemView.findViewById(R.id.layoutId);
 
 
         }

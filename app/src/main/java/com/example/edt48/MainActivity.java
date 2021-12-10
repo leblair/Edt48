@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    ArrayList<Picture> pictures = new ArrayList<>();
+    List<Picture> pictures = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
